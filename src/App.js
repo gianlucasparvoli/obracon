@@ -13,9 +13,9 @@ function App() {
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="/about" element={<About />} />
-          <Route path="/project" element={<Projects />} />
+          <Route path="/projects" element={<Projects />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/project/:id" element={<ProjectDetail />} exact/>
+          <Route path="/project/:id" element={<ProjectDetail />}/>
           <Route path='*' element={<Navigate to='/' />} />
         </Routes>
       </Router>

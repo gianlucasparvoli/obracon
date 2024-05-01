@@ -33,7 +33,7 @@ const Navbar = () => {
     {
       text: "Proyectos",
       icon: <HomeWorkIcon />,
-      path: "/project"
+      path: "/projects"
     },
     {
       text: "Contacto",
