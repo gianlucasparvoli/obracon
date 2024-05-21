@@ -15,13 +15,15 @@ function ProjectDetail() {
     const [loaded, setLoaded] = useState(false);
     const [index, setIndex] = useState(-1);
     const folderName = 'PhotosTest'; //cambiar por la url y crear carpeta con imagenes por proyecto. No se puede hacer dimanico el require, hay que importar todas las carpetas y hacer un if
-    const images = require.context('../../data/PhotosTest', true); 
+    const images = require.context('../../data/Viviendas/Zaccanti', true); 
     const imageList = images.keys().map(image => images(image));
-    const photos = require('../../data/PhotosTest/file.json');
-    
+    const photos = require('../../data/Viviendas/Zaccanti/file.json');
+
     photos.map((image, i) => {
         image.src = imageList[i]
     });
+
+    console.log(photos)
 
     return (
         <Container fluid className="project-section">

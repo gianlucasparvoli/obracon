@@ -26,8 +26,7 @@ function ProjectCards(props) {
         </Card.Text>
         <div className="mt-4 form-group row d-flex justify-content-center ">
           <Button variant="primary" href={props.link} className="btn btn-dark col-sm-6 ">
-            <BsGithub /> &nbsp;
-            GitHub
+            Ver más
           </Button>
         </div>
 

@@ -3,7 +3,7 @@ import pandas as pd
 from PIL import Image 
 import json
 
-folder_images = "./PhotosTest"
+folder_images = "./Viviendas\Zaccanti"
 size_images = []
 
 for dirpath, _, filenames in os.walk(folder_images):
@@ -22,5 +22,5 @@ for dirpath, _, filenames in os.walk(folder_images):
             )
     pd.DataFrame(size_images)
 print(size_images)
-with open("./PhotosTest/file.json", "w") as f:
+with open("./Viviendas\Zaccanti/file.json", "w") as f:
     json.dump(size_images, f)
