@@ -10,7 +10,7 @@ function ProjectCards(props) {
   return (
 
     <Card className="project-card-view">
-      <Carousel >
+      <Carousel autoPlay={true} dynamicHeight={true} infiniteLoop={true} showStatus={false} showThumbs={false}>
         
         {props?.imgPath?.map(image =>
           <div>
