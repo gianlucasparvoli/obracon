@@ -3,6 +3,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import ProjectCard from "./ProjectCards";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
+import Aes1 from "../../data/Industria/AES/Imagen12.jpg"
 
 function Projects() {
   var path = window.location.pathname;
@@ -11,7 +12,7 @@ function Projects() {
     "projects": [
       {
         "img": [
-          "../../data/Industria/AES/Imagen12.jpg",
+          Aes1,
           "/static/media/Imagen12.a4ac1d6f430758e5dcc2.jpg",
           "/static/media/Imagen13.0b95f80dfa46d5f4ce5f.jpg",
           "/static/media/Imagen16.898765f2ab3831173b10.jpg",
