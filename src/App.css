@@ -90,7 +90,8 @@ nav {
 }
 
 .home-image-section {
-  max-width: 600px;
+  margin-top : -3.2rem ;
+  max-width: 800px;
   flex: 1;
 }
 
