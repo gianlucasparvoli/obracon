@@ -14,6 +14,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import InfoIcon from "@mui/icons-material/Info";
 import HomeWorkIcon from '@mui/icons-material/HomeWork';
 import PhoneRoundedIcon from "@mui/icons-material/PhoneRounded";
+import GroupIcon from '@mui/icons-material/Group';
 import { useNavigate } from "react-router-dom"; 
 
 const Navbar = () => {
@@ -34,6 +35,10 @@ const Navbar = () => {
       text: "Proyectos",
       icon: <HomeWorkIcon />,
       path: "/projects"
+    },{
+      text: "Nuestro Equipo",
+      icon: <GroupIcon />,
+      path: "/team"
     },
     {
       text: "Contacto",
@@ -41,6 +46,7 @@ const Navbar = () => {
       path: "/contact"
     },
   ];
+  
   return (
     <nav>
       <div className="nav-logo-container">

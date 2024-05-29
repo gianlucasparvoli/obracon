@@ -3,7 +3,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Reem Kufi", sans-serif !important;
-  
+
 }
 
 img {
@@ -16,15 +16,18 @@ img {
   width: 85vw;
   max-width: 1900px;
   margin: 0rem auto;
- 
+
 }
 
 body {
   max-width: 100%;
   overflow-x: hidden;
-  background: #e0eafc; /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #e0eafc, #cfdef3); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #e0eafc, #cfdef3); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: #e0eafc;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #e0eafc, #cfdef3);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #e0eafc, #cfdef3);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 body {
@@ -90,7 +93,7 @@ nav {
 }
 
 .home-image-section {
-  margin-top : -3.2rem ;
+  margin-top: -3.2rem;
   max-width: 800px;
   flex: 1;
 }
@@ -543,5 +546,45 @@ nav {
   .home-bannerImage-container,
   .about-background-image-container {
     display: none;
+  }
+}
+
+.team-item img {
+  transition: 0.5s;
+}
+
+.team-item:hover img {
+  opacity: 0.7;
+}
+
+.team-item .team-text {
+  position: absolute;
+  left: 0;
+  right: 60px;
+  bottom: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  opacity: 0;
+  transition: 0.5s;
+}
+
+.team-item:hover .team-text {
+  right: 30px;
+  opacity: 1;
+}
+
+.team-item .team-text div {
+  transition: 0.5s;
+}
+
+.team-item:hover .team-text div {
+  margin-left: 30px;
+}
+
+@media screen and (min-width: 1024px) {
+  .img-resize-project {
+    width: 50vw;
+    max-height: 40vw;
   }
 }
