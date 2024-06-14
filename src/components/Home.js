@@ -1,7 +1,7 @@
 import React from "react";
-import Home1 from "../data/HomeImages/1.png";
-import Home2 from "../data/HomeImages/2.png";
-import Home3 from "../data/HomeImages/3.png";
+import Home1 from "../data/HomeImages/1.webp";
+import Home2 from "../data/HomeImages/2.webp";
+import Home3 from "../data/HomeImages/3.webp";
 //import { Carousel } from "react-responsive-carousel";
 import Carousel from 'react-bootstrap/Carousel';
 
@@ -14,7 +14,7 @@ const Home = () => {
         {imgPath?.map(image =>
           <Carousel.Item interval={1500}>
 
-            <img src={image} variant="top" alt="card-img" class="d-block img-fluid" />
+            <img src={image} variant="top" alt="card-img" class="d-block img-fluid" type="image/webp"/>
 
             <Carousel.Caption>
               {/*  <h3>First slide label</h3>
