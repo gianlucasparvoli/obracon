@@ -588,3 +588,11 @@ nav {
     max-height: 40vw;
   }
 }
+
+.carousel-inner>img, .carousel-inner>.item>a>img {
+  display: block;
+  height: auto;
+  max-width: 100%;
+  line-height: 1;
+  width: 100%;
+  }

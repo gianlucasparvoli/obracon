@@ -1,5 +1,5 @@
-import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import Accordion from 'react-bootstrap/Accordion';
 import Navbar from "../Navbar";
 import Footer from "../Footer";
 import IndustriaImg from "../../data/Industria/SIDERAR/Imagen32.jpg";
@@ -10,7 +10,9 @@ import InstitucionImg from "../../data/Instituciones/EESTNR6/Imagen1.jpg"
 
 function Projects() {
   var path = window.location.pathname;
-
+  const [showItem, setShowItem] = useState("Industria");
+  const resolution = window.innerWidth;
+  const isMobile = resolution <= 768;
   var workInfoData = {
     "projects": [
       {
@@ -38,40 +40,69 @@ function Projects() {
   }
 
   return (
-    <Container fluid >
+    <div >
       {path !== "/" && <Navbar />}
-      <Container style={{ "margin-top": path == "/" ? "20rem" : "5rem" }}>
+      <div style={{ "marginTop": path == "/" ? "20rem" : "5rem" }}>
         <h1 className="project-heading">
-          <strong className="purple">Trabajos recientes </strong>
+          <strong className="purple">Nuestros proyectos </strong>
         </h1>
-        {/* <p style={{ color: "black" }}>
-          Trabajos recientes:
-        </p> */}
+        {isMobile ?
 
-        <Row className="mt-4 " style={{ justifyContent: "center", paddingBottom: "10px" }}>
-          {workInfoData?.projects?.map((item, index) => (
-            <div
-              key={item.title}
-              className={'d-flex justify-content-center pb-3'}
-              data-wow-delay={0.3}
-            >
-              <div className="team-item position-relative" style={{}}>
-                <img className="img-resize-project img-fluid rounded " src={item.img[0]} alt="" />
-                <div className="team-text bg-white rounded-end p-4 justify-content-center align-items-center">
-                  <div>
-                    <h5 ><a className="btn btn-dark" href={"/project/" + item.title}>{item.title}</a></h5>
-                    {/* <span>{item.text}</span> */}
+          // MOBILE VERSION
+          <Accordion defaultActiveKey="1" style={{ "marginTop": "2rem" }}>
+            {workInfoData?.projects?.map((item, index) => (
+              <Accordion.Item eventKey={index}>
+                <Accordion.Header>{item.title}</Accordion.Header>
+                <Accordion.Body>
+                  <div className="card" >
+                    <img src={item.img[0]} className="card-img-top" alt="..." />
+                    <div className="card-body text-center">
+                      <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      <h5 className="text-center"><a className="btn btn-dark" href={"/project/" + item.title}>Ir a {item.title}</a></h5>
+                    </div>
                   </div>
+                </Accordion.Body>
+              </Accordion.Item>))}
+          </Accordion>
 
-                </div>
+          :
+
+          // DESKTOP VERSION
+          <div className="container text-center">
+            <div className="row">
+              <div className="col-3">
+                <ul className="nav nav-underline flex-column " style={{ "marginTop": "10rem" }}>
+                  {workInfoData?.projects?.map((item, index) => (
+                    <li className="nav-item mt-5">
+                      <a className="nav-link active" aria-current="page"
+                        href={"#" + item.title}
+                        onClick={() => setShowItem(item.title)}>
+                        {item.title}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
               </div>
+              <div className="col-9" style={{ "marginTop": "5rem" }}>
+                {workInfoData?.projects?.map((item, index) => (
+                  showItem == item.title &&
+                  <div className="card" >
+                    <img src={item.img[0]} className="card-img-top" alt="..." />
+                    <div className="card-body">
+                      <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      <h5 ><a className="btn btn-dark" href={"/project/" + item.title}>Ir a {item.title}</a></h5>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
             </div>
 
-          ))}
-        </Row>
-      </Container>
+          </div>
+        }
+      </div>
       {path !== "/" && <Footer />}
-    </Container >
+    </div >
   );
 }
 

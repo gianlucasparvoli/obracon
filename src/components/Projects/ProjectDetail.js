@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
 import { useParams } from "react-router-dom";
-import PhotoAlbum from "react-photo-album";
-import Lightbox from "yet-another-react-lightbox";
+import { APIProvider, Map } from '@vis.gl/react-google-maps';
 import "yet-another-react-lightbox/styles.css";
-import { Carousel } from "react-responsive-carousel";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Carousel } from 'react-responsive-carousel';
+import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
+import "leaflet/dist/leaflet.css";
+import markerIconPng from "../../data/marker-icon.png"
+import {Icon} from 'leaflet'
 
 function ProjectDetail() {
     var path = window.location.pathname;
@@ -116,24 +118,35 @@ function ProjectDetail() {
     return (
         <Container fluid className="project-section">
             {path !== "/" && <Navbar />}
-            <Container style={{ "marginTop": "5rem" }}>
+            <div style={{ "marginTop": "5rem" }}>
+
                 <h1 className="project-heading">
                     <strong className="purple">Projecto: {id} </strong>
                 </h1>
+                <h3>
+                    Here is an example of an image carousel
+                </h3>
+                <Carousel dynamicHeight={true} showStatus={false} showIndicators={false}>
+                    {photos?.map(image =>
+                        <div >
+                            <img src={image.src} variant="top" alt="card-img" />
+                        </div>
+                    )}
+                </Carousel>
+                <MapContainer center={[51.505, -0.09]} style={{ height: 536 }} zoom={13} scrollWheelZoom={false}>
+                    <TileLayer
+                        attribution=''
+                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                    />
+                    <Marker position={[51.505, -0.09]} icon={new Icon({iconUrl: markerIconPng, iconSize: [40, 40], iconAnchor: [12, 41]})}>
+                        <Popup>
+                            A pretty CSS3 popup. <br /> Easily customizable.
+                        </Popup>
+                    </Marker>
+                </MapContainer>
+                {path !== "/" && <Footer />}
+            </div>
 
-                <PhotoAlbum layout="rows"
-                    photos={photos}
-                    onClick={({ index: current }) => setIndex(current)} />
-
-                <Lightbox
-                    index={index}
-                    slides={photos}
-                    open={index >= 0}
-                    close={() => setIndex(-1)}
-                />
-
-            </Container>
-            {path !== "/" && <Footer />}
         </Container>
     );
 }
