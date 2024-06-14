@@ -3,7 +3,11 @@ import { Container, Row, Col } from "react-bootstrap";
 import ProjectCard from "./ProjectCards";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
-import { useParams } from "react-router-dom";
+import { useHref, useParams } from "react-router-dom";
+import SplitPane from "react-split-pane";
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
+import { useNavigate } from 'react-router-dom';
 
 function ProjectFolder() {
   var path = window.location.pathname;
@@ -92,7 +96,7 @@ function ProjectFolder() {
     "title": "Puente",
     "text": "Lorem ipsum dolor sit amet consectetur. Maecenas orci et sagittis duis elementum interdum facilisi bibendum.",
   }, {
-    "img": ["/static/media/Imagen36.ac49b53417919b3bc0ff.jpg","/static/media/Imagen37.9c65d8092ef912dcef0c.jpg"],
+    "img": ["/static/media/Imagen36.ac49b53417919b3bc0ff.jpg", "/static/media/Imagen37.9c65d8092ef912dcef0c.jpg"],
     "title": "UTN",
     "text": "Lorem ipsum dolor sit amet consectetur. Maecenas orci et sagittis duis elementum interdum facilisi bibendum.",
   }]
@@ -125,18 +129,37 @@ function ProjectFolder() {
   else if (idFolder === "Instituciones") projectFolders = projectsInstituciones
   else if (idFolder === "Viviendas") projectFolders = projectsViviendas
 
+  const navigate = useNavigate();
 
   return (
     <Container fluid >
       {path !== "/" && <Navbar />}
-      <Container style={{ "margin-top": path == "/" ? "20rem" : "5rem" }}>
+      <div style={{ "margin-top": path == "/" ? "20rem" : "5rem" }}>
         <h1 className="project-heading">
           <strong className="purple">Trabajos: {idFolder} </strong>
         </h1>
-        {/* <p style={{ color: "black" }}>
-          Trabajos recientes:
-        </p> */}
-        <Row className="mt-4 " style={{ justifyContent: "center", paddingBottom: "10px" }}>
+        <div className="container text-center">
+          <div className="row">
+            {projectFolders?.map((item, index) => (
+              <div className="col-6 mt-2">
+                <Card className="bg-dark text-white">
+                  <Card.Img src={item.img[0]} alt="Card image" />
+                  <Card.ImgOverlay>
+                    {/* <Card.Title>{item.title}</Card.Title> */}
+                    <h4>
+                      <a className="bg-white text-black" variant="primary" href={"/project/" + idFolder + "/" + item.title}
+                      onClick={navigate("/project/" + idFolder + "/" + item.title)}
+                      >Ir a {item.title}</a>
+                    </h4>
+                  </Card.ImgOverlay>
+                </Card>
+
+              </div>
+            ))}
+          </div>
+
+        </div>
+        {/* <Row className="mt-4 " style={{ justifyContent: "center", paddingBottom: "10px" }}>
           {projectFolders?.map((item, index) => (
             <Col md={4} className="project-card mt-4 ">
               <ProjectCard
@@ -148,8 +171,8 @@ function ProjectFolder() {
               />
             </Col>
           ))}
-        </Row>
-      </Container>
+        </Row> */}
+      </div>
       {path !== "/" && <Footer />}
     </Container>
   );
