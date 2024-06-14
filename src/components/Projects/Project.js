@@ -70,20 +70,20 @@ function Projects() {
           // DESKTOP VERSION
           <div className="container text-center">
             <div className="row">
-              <div className="col-3">
-                <ul className="nav nav-underline flex-column " style={{ "marginTop": "10rem" }}>
+              <div className="col-2">
+                <ul className="nav  flex-column bg-dark" style={{ "marginTop": "12rem", "paddingBottom": "4rem" }}>
                   {workInfoData?.projects?.map((item, index) => (
                     <li className="nav-item mt-5">
-                      <a className="nav-link active" aria-current="page"
+                      <h5><a className="nav-link text-light" aria-current="page"
                         href={"#" + item.title}
                         onClick={() => setShowItem(item.title)}>
                         {item.title}
-                      </a>
+                      </a></h5>
                     </li>
                   ))}
                 </ul>
               </div>
-              <div className="col-9" style={{ "marginTop": "5rem" }}>
+              <div className="col-10" style={{ "marginTop": "5rem" }}>
                 {workInfoData?.projects?.map((item, index) => (
                   showItem == item.title &&
                   <div className="card" >
