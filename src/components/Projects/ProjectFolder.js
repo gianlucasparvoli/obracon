@@ -4,7 +4,6 @@ import ProjectCard from "./ProjectCards";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
 import { useHref, useParams } from "react-router-dom";
-import SplitPane from "react-split-pane";
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import { useNavigate } from 'react-router-dom';
