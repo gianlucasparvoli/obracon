@@ -3,7 +3,7 @@ import Home1 from "../data/HomeImages/1.webp";
 import Home2 from "../data/HomeImages/2.webp";
 import Home3 from "../data/HomeImages/3.webp";
 import Carousel from 'react-bootstrap/Carousel';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { Img } from 'react-image';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 
 const Home = () => {
@@ -18,7 +18,7 @@ const Home = () => {
             <Carousel.Item interval={1500}>
 
 
-              <LazyLoadImage src={image} loader={<MyLoader />} class="d-block img-fluid" type="image/webp" ></LazyLoadImage>
+              <Img src={image} loader={<MyLoader />} class="d-block img-fluid" type="image/webp" />
 
               <Carousel.Caption>
                 {/*  <h3>First slide label</h3>
