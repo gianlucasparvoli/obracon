@@ -18,7 +18,7 @@ const Home = () => {
             <Carousel.Item interval={1500}>
 
 
-              <Img src={image} loader={<MyLoader />} class="d-block img-fluid" type="image/webp" />
+              <Img src={image} loader={<MyLoader />} class="d-block img-fluid" type="image/webp"  loading="lazy"  decoding="async" />
 
               <Carousel.Caption>
                 {/*  <h3>First slide label</h3>

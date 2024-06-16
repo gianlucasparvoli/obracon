@@ -6,7 +6,8 @@ import IndustriaImg from "../../data/Industria/SIDERAR/Imagen32.jpg";
 import ViviendaImg from "../../data/Viviendas/Policelia/Imagen2.jpg";
 import BancoImg from "../../data/BNA/Ramallo/Imagen46.jpg";
 import PatrimonioImg from "../../data/Patrimonio historico/Patrimonio/Imagen44.png";
-import InstitucionImg from "../../data/Instituciones/EESTNR6/Imagen1.jpg"
+import InstitucionImg from "../../data/Instituciones/EESTNR6/Imagen1.jpg";
+import { Img } from 'react-image';
 
 function Projects() {
   var path = window.location.pathname;
@@ -37,7 +38,8 @@ function Projects() {
         "text": "Lorem ipsum dolor sit amet consectetur. Maecenas orci et sagittis duis elementum interdum facilisi bibendum.",
       },
     ]
-  }
+  };
+  const MyLoader = () => <div>Cargando...</div>;
 
   return (
     <div >
@@ -87,7 +89,7 @@ function Projects() {
                 {workInfoData?.projects?.map((item, index) => (
                   showItem == item.title &&
                   <div className="card" >
-                    <img src={item.img[0]} className="card-img-top" alt="..." />
+                    <Img src={item.img[0]} loader={<MyLoader />} className="card-img-top" type="image/webp"  loading="lazy"  decoding="async" />
                     <div className="card-body">
                       <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                       <h5 ><a className="btn btn-dark" href={"/project/" + item.title}>Ir a {item.title}</a></h5>
