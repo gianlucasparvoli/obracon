@@ -3,6 +3,7 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 //import Home2 from "../data/HomeImages/2.webp";
 //import Home3 from "../data/HomeImages/3.webp";
 import Carousel from 'react-bootstrap/Carousel';
+import Loader from "./Loader"
 import { Img } from 'react-image';
 import { storage, auth } from '../firebase'; // Import the storage instance
 import { ref, listAll, getDownloadURL } from "firebase/storage";
@@ -10,7 +11,6 @@ import { signInAnonymously } from "firebase/auth";
 
 const Home = () => {
   //var imgPath = [Home1, Home2, Home3];
-  const MyLoader = () => <div>Cargando...</div>;
   const [files, setFiles] = useState([]);
 
   const authenticate = async () => {
@@ -48,7 +48,7 @@ const Home = () => {
           <Carousel.Item interval={1500}>
 
 
-            <Img src={image} loader={<MyLoader />} class="d-block img-fluid" type="image/webp" />
+            <Img src={image} loader={<Loader />} class="d-block img-fluid" type="image/webp" />
 
             <Carousel.Caption>
               {/*  <h3>First slide label</h3>

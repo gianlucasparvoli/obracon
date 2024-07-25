@@ -26,6 +26,7 @@
     "react-image": "^4.1.0",
     "react-lazy-load-image-component": "^1.6.0",
     "react-leaflet": "^4.2.1",
+    "react-loader-spinner": "^6.1.6",
     "react-photo-album": "^2.3.1",
     "react-responsive": "^10.0.0",
     "react-responsive-carousel": "^3.2.23",
