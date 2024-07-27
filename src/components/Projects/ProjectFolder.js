@@ -100,12 +100,6 @@ function ProjectFolder() {
     "text": "Lorem ipsum dolor sit amet consectetur. Maecenas orci et sagittis duis elementum interdum facilisi bibendum.",
   }]
 
-  var projectsPatrimonioHistorico = [{
-    "img": ["/static/media/Imagen44.b4c64ec860ea5a577e21.png"],
-    "title": "Patrimonio Historico",
-    "text": "Lorem ipsum dolor sit amet consectetur. Maecenas orci et sagittis duis elementum interdum facilisi bibendum.",
-  }]
-
   var projectsViviendas = [{
     "img": ["/static/media/Imagen2.838fcdea1ae237a7baec.jpg"],
     "title": "Policelia",
@@ -124,7 +118,6 @@ function ProjectFolder() {
 
   if (idFolder === "Banco de la Nación Argentina") projectFolders = projectsBNA
   else if (idFolder === "Industria") projectFolders = projectsIndustria
-  else if (idFolder === "Patrimonio historico") projectFolders = projectsPatrimonioHistorico
   else if (idFolder === "Instituciones") projectFolders = projectsInstituciones
   else if (idFolder === "Viviendas") projectFolders = projectsViviendas
 
@@ -135,42 +128,50 @@ function ProjectFolder() {
       {path !== "/" && <Navbar />}
       <div style={{ "margin-top": path == "/" ? "20rem" : "5rem" }}>
         <h1 className="project-heading">
-          <strong className="purple">Trabajos: {idFolder} </strong>
+          <strong className="purple">Obras: {idFolder} </strong>
         </h1>
-        <div className="container text-center">
+        <div className="container">
           <div className="row">
             {projectFolders?.map((item, index) => (
-              <div className="col-6 mt-2">
-                <Card className="bg-dark text-white">
-                  <Card.Img src={item.img[0]} alt="Card image" />
-                  <Card.ImgOverlay>
-                    {/* <Card.Title>{item.title}</Card.Title> */}
-                    <h4>
-                      <a className="bg-white text-black" variant="primary" href={"/project/" + idFolder + "/" + item.title}
+              <div class="col-md-6 mt-2 my-md-3 pl-md-3 " >
+                <div class="bg-dark mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden" >
+                  <div class="my-3 py-3" >
+                    <h3 > {item.title} </h3>
+                    {/* <p class="lead">And an even wittier subheading.</p> */}
+                    <a className="text-white" href={"/project/" + idFolder + "/" + item.title}
                       onClick={navigate("/project/" + idFolder + "/" + item.title)}
-                      >Ir a {item.title}</a>
-                    </h4>
-                  </Card.ImgOverlay>
-                </Card>
-
+                    >Ver proyecto</a>
+                  </div>
+                  <div class="shadow-sm mx-auto" style={{ width: "90%", "borderRadius": "21px 21px 0 0" }}>
+                    <img className="img-fluid rounded" src={item.img[0]} alt="" />
+                  </div>
+                </div>
               </div>
+              // <div
+              //   key={item.title}
+              //   className={`col-lg-6 col-md-2 wow fadeInUp`}
+              //   style={{ "marginTop": "1rem" }}
+              //   data-wow-delay={0.3}
+              // >
+              //   <div className="team-item position-relative">
+              //     <img className="img-fluid rounded" src={item.img[0]} alt="" />
+              //     <div className="team-text bg-white rounded-end p-4">
+              //       <div>
+              //         <h5>
+
+              //           <a className="bg-white text-black" variant="primary" href={"/project/" + idFolder + "/" + item.title}
+              //             onClick={navigate("/project/" + idFolder + "/" + item.title)}
+              //           >Ir a proyecto {item.title}</a>
+              //         </h5>
+              //       </div>
+              //     </div>
+              //   </div>
+              // </div>
             ))}
           </div>
-
         </div>
-        {/* <Row className="mt-4 " style={{ justifyContent: "center", paddingBottom: "10px" }}>
-          {projectFolders?.map((item, index) => (
-            <Col md={4} className="project-card mt-4 ">
-              <ProjectCard
-                imgPath={item.img}
-                isBlog={false}
-                title={item.title}
-                description={item.text}
-                link={"/project/" + idFolder + "/" + item.title}
-              />
-            </Col>
-          ))}
-        </Row> */}
+
+
       </div>
       {path !== "/" && <Footer />}
     </Container>
