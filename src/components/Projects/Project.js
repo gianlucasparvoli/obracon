@@ -2,50 +2,86 @@ import React, { useEffect, useState } from "react";
 import Accordion from 'react-bootstrap/Accordion';
 import Navbar from "../Navbar";
 import Footer from "../Footer";
-import IndustriaImg from "../../data/Industria/SIDERAR/Imagen32.jpg";
-import ViviendaImg from "../../data/Viviendas/Policelia/Imagen2.jpg";
-import BancoImg from "../../data/BNA/Ramallo/Imagen46.jpg";
-import PatrimonioImg from "../../data/Patrimonio historico/Patrimonio/Imagen44.png";
-import InstitucionImg from "../../data/Instituciones/EESTNR6/Imagen1.jpg";
+import Loader from "../Loader"
 import { Img } from 'react-image';
+import { storage, auth } from '../../firebase'; // Import the storage instance
+import { ref, listAll, getDownloadURL } from "firebase/storage";
+import { signInAnonymously } from "firebase/auth";
 
 function Projects() {
   var path = window.location.pathname;
-  const [showItem, setShowItem] = useState("Industria");
+  const [showItem, setShowItem] = useState("Instituciones");
+  const [IndustriaImg, setIndustriaImg] = useState("");
+  const [ViviendaImg, setViviendaImg] = useState("");
+  const [BancoImg, setBancoImg] = useState("");
+  const [InstitucionImg, setInstitucionImg] = useState("");
   const resolution = window.innerWidth;
   const isMobile = resolution <= 768;
+
+  var pathsImgStorage = [
+    "Industria/SIDERAR/SIDERAR1.jpg",
+    "Instituciones/EESTNR6/EESTNR6_2.jpg",
+    "Viviendas/Zaccanti/Zaccanti4.JPG",
+    "BNA/Pergamino/Pergamino1.jpg",
+  ]
+
+  const authenticate = async () => {
+    try {
+      await signInAnonymously(auth);
+    } catch (error) {
+      console.error("Anonymous authentication failed", error);
+    }
+  };
+
+  useEffect(() => {
+    const listFiles = async () => {
+      await authenticate();
+      pathsImgStorage.map(async (img, itemNum) => {
+        const storageRef = ref(storage, img);
+        try {
+          var fileUrls = await getDownloadURL(storageRef);
+
+          if (itemNum == 0) setIndustriaImg(fileUrls)
+          else if (itemNum == 1) setInstitucionImg(fileUrls)
+          else if (itemNum == 2) setViviendaImg(fileUrls)
+          else if (itemNum == 3) setBancoImg(fileUrls)
+
+        } catch (error) {
+          console.error("Error listing files", error);
+        }
+      })
+    };
+
+    listFiles();
+  }, []);
+
   var workInfoData = {
     "projects": [
       {
-        "img": [IndustriaImg],
-        "title": "Industria",
-        "text": "Lorem ipsum dolor sit amet consectetur. Maecenas orci et sagittis duis elementum interdum facilisi bibendum.",
-      }, {
-        "img": [InstitucionImg],
+        "img": InstitucionImg,
         "title": "Instituciones",
-        "text": "Lorem ipsum dolor sit amet consectetur. Maecenas orci et sagittis duis elementum interdum facilisi bibendum.",
+        "text": "",
       }, {
-        "img": [ViviendaImg],
+        "img": IndustriaImg,
+        "title": "Industria",
+        "text": "",
+      }, {
+        "img": ViviendaImg,
         "title": "Viviendas",
-        "text": "Lorem ipsum dolor sit amet consectetur. Maecenas orci et sagittis duis elementum interdum facilisi bibendum.",
+        "text": "",
       }, {
-        "img": [BancoImg],
+        "img": BancoImg,
         "title": "Banco de la Nación Argentina",
-        "text": "Lorem ipsum dolor sit amet consectetur. Maecenas orci et sagittis duis elementum interdum facilisi bibendum.",
-      }, {
-        "img": [PatrimonioImg],
-        "title": "Patrimonio historico",
-        "text": "Lorem ipsum dolor sit amet consectetur. Maecenas orci et sagittis duis elementum interdum facilisi bibendum.",
-      },
+        "text": "",
+      }
     ]
   };
-  const MyLoader = () => <div>Cargando...</div>;
 
   return (
     <div >
       {path !== "/" && <Navbar />}
       <div style={{ "marginTop": path == "/" ? "20rem" : "5rem" }}>
-        <h1 className="project-heading">
+        <h1 className="project-heading text-center">
           <strong className="purple">Nuestros proyectos </strong>
         </h1>
         {isMobile ?
@@ -57,7 +93,7 @@ function Projects() {
                 <Accordion.Header>{item.title}</Accordion.Header>
                 <Accordion.Body>
                   <div className="card" >
-                    <img src={item.img[0]} className="card-img-top" alt="..." />
+                    <img src={item.img} className="card-img-top" alt="..." />
                     <div className="card-body text-center">
                       <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                       <h5 className="text-center"><a className="btn btn-dark" href={"/project/" + item.title}>Ir a {item.title}</a></h5>
@@ -73,7 +109,7 @@ function Projects() {
           <div className="container text-center">
             <div className="row">
               <div className="col-2">
-                <ul className="nav  flex-column bg-dark" style={{ "marginTop": "12rem", "paddingBottom": "4rem" }}>
+                <ul className="nav  flex-column bg-dark" style={{ "marginTop": "15rem", "paddingBottom": "4rem" }}>
                   {workInfoData?.projects?.map((item, index) => (
                     <li className="nav-item mt-5">
                       <h5><a className="nav-link text-light" aria-current="page"
@@ -89,9 +125,9 @@ function Projects() {
                 {workInfoData?.projects?.map((item, index) => (
                   showItem == item.title &&
                   <div className="card" >
-                    <Img src={item.img[0]} loader={<MyLoader />} className="card-img-top" type="image/webp"  loading="lazy"  decoding="async" />
+                    <Img src={item.img} loader={<Loader />} className="card-img-top" type="image/webp" loading="lazy" decoding="async" />
                     <div className="card-body">
-                      <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      <p className="card-text">{item.text}</p>
                       <h5 ><a className="btn btn-dark" href={"/project/" + item.title}>Ir a {item.title}</a></h5>
                     </div>
                   </div>
