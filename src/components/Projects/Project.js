@@ -93,7 +93,7 @@ function Projects() {
                 <Accordion.Header>{item.title}</Accordion.Header>
                 <Accordion.Body>
                   <div className="card" >
-                    <img src={item.img} className="card-img-top" alt="..." />
+                    <Img src={item.img} loader={<Loader />} className="card-img-top" alt="..." />
                     <div className="card-body text-center">
                       <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                       <h5 className="text-center"><a className="btn btn-dark" href={"/project/" + item.title}>Ir a {item.title}</a></h5>
