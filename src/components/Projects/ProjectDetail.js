@@ -5,116 +5,65 @@ import Footer from "../Footer";
 import { useParams } from "react-router-dom";
 import { APIProvider, Map } from '@vis.gl/react-google-maps';
 import "yet-another-react-lightbox/styles.css";
-import { Carousel } from 'react-responsive-carousel';
+import Carousel from 'react-bootstrap/Carousel';
 import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import markerIconPng from "../../data/marker-icon.png"
-import {Icon} from 'leaflet'
+import { Icon } from 'leaflet';
+import Loader from "../Loader"
+import { Img } from 'react-image';
+import { storage, auth } from '../../firebase'; // Import the storage instance
+import { ref, listAll, getDownloadURL } from "firebase/storage";
+import { signInAnonymously } from "firebase/auth";
 
 function ProjectDetail() {
     var path = window.location.pathname;
     const { idFolder, id } = useParams();
-    const [loaded, setLoaded] = useState(false);
-    const [index, setIndex] = useState(-1);
-    //cambiar por la url y crear carpeta con imagenes por proyecto. No se puede hacer dimanico el require, hay que importar todas las carpetas y hacer un if
+    const [files, setFiles] = useState([]);
+    var images = [];
+    var pathsImgStorage = "";    
 
-    var images = []
-    var photos = []
+    if (idFolder === "Banco de la Nación Argentina" && id === "Esperanza") pathsImgStorage = "BNA/Esperanza"
+    else if (idFolder === "Banco de la Nación Argentina" && id === "Pergamino") pathsImgStorage = "BNA/Pergamino"
+    else if (idFolder === "Banco de la Nación Argentina" && id === "Sunchales") pathsImgStorage = "BNA/Sunchales"
+    else if (idFolder === "Banco de la Nación Argentina" && id === "Concepción del Uruguay") pathsImgStorage = "BNA/Concepcion_del_uruguay"
+    else if (idFolder === "Viviendas" && id === "Dominguez") pathsImgStorage = "Viviendas/Dominguez"
+    else if (idFolder === "Viviendas" && id === "Policelia") pathsImgStorage = "Viviendas/Policelia"
+    else if (idFolder === "Viviendas" && id === "Zaccanti") pathsImgStorage = "Viviendas/Zaccanti"
+    else if (idFolder === "Industria" && id === "AES") pathsImgStorage = "Industria/AES"
+    else if (idFolder === "Industria" && id === "SIDERAR") pathsImgStorage = "Industria/SIDERAR"
+    else if (idFolder === "Industria" && id === "Zeni aserraderos") pathsImgStorage = "Industria/Zeni_aserraderos"
+    else if (idFolder === "Instituciones" && id === "EESTNR6") pathsImgStorage = "Instituciones/EESTNR6"
+    else if (idFolder === "Instituciones" && id === "UTN") pathsImgStorage = "Instituciones/UTN"
+    else document.location.href = "/";
 
-    const imagesBNARamallo = require.context('../../data/BNA/Ramallo', true);
-    const photosBNARamallo = require('../../data/BNA/Ramallo/file.json');
-    const imagesBNASunchales = require.context('../../data/BNA/SUNCHALES', true);
-    const photosBNASunchales = require('../../data/BNA/SUNCHALES/file.json');
+    const authenticate = async () => {
+        try {
+            await signInAnonymously(auth);
+        } catch (error) {
+            console.error("Anonymous authentication failed", error);
+        }
+    };
 
-    const imagesIndustriaAES = require.context('../../data/Industria/AES', true);
-    const photosIndustriaAES = require('../../data/Industria/AES/file.json');
-    const imagesIndustriaFIPLASTO = require.context('../../data/Industria/FIPLASTO', true);
-    const photosIndustriaFIPLASTO = require('../../data/Industria/FIPLASTO/file.json');
-    const imagesIndustriaHalperin = require.context('../../data/Industria/Halperín', true);
-    const photosIndustriaHalperin = require('../../data/Industria/Halperín/file.json');
-    const imagesIndustriaJHONDEERE = require.context('../../data/Industria/JHON DEERE', true);
-    const photosIndustriaJHONDEERE = require('../../data/Industria/JHON DEERE/file.json');
-    const imagesIndustriaLOVERAZ = require.context('../../data/Industria/LOVERAZ', true);
-    const photosIndustriaLOVERAZ = require('../../data/Industria/LOVERAZ/file.json');
-    const imagesIndustriaSIDERAR = require.context('../../data/Industria/SIDERAR', true);
-    const photosIndustriaSIDERAR = require('../../data/Industria/SIDERAR/file.json');
+    useEffect(() => {
+        const listFiles = async () => {
+            await authenticate();
+            const storageRef = ref(storage, pathsImgStorage);
+            try {
+                const res = await listAll(storageRef);
+                const filePromises = res.items.map((itemRef) => getDownloadURL(itemRef));
+                const fileUrls = await Promise.all(filePromises);
+                setFiles(fileUrls);
+            } catch (error) {
+                console.error("Error listing files", error);
+            }
+        };
 
-    const imagesViviendasZaccanti = require.context('../../data/Viviendas/Zaccanti', true);
-    const photosViviendasZaccanti = require('../../data/Viviendas/Zaccanti/file.json');
-    const imagesViviendasPolicelia = require.context('../../data/Viviendas/Policelia', true);
-    const photosViviendasPolicelia = require('../../data/Viviendas/Policelia/file.json');
-    const imagesViviendasRomagnoli = require.context('../../data/Viviendas/Romagnoli', true);
-    const photosViviendasRomagnoli = require('../../data/Viviendas/Romagnoli/file.json');
+        listFiles();
+    }, []);
 
-    const imagesInstitucionesEESTNR6 = require.context('../../data/Instituciones/EESTNR6', true);
-    const photosInstitucionesEESTNR6 = require('../../data/Instituciones/EESTNR6/file.json');
-    const imagesInstitucionesPlazoleta = require.context('../../data/Instituciones/Plazoleta', true);
-    const photosInstitucionesPlazoleta = require('../../data/Instituciones/Plazoleta/file.json');
-    const imagesInstitucionesPuente = require.context('../../data/Instituciones/Puente', true);
-    const photosInstitucionesPuente = require('../../data/Instituciones/Puente/file.json');
-    const imagesInstitucionesUTN = require.context('../../data/Instituciones/UTN', true);
-    const photosInstitucionesUTN = require('../../data/Instituciones/UTN/file.json');
-
-    const imagesPatrimonio = require.context('../../data/Patrimonio historico/Patrimonio', true);
-    const photosPatrimonio = require('../../data/Patrimonio historico/Patrimonio/file.json');
-
-
-    if (idFolder === "Banco de la Nación Argentina" && id === "Ramallo") {
-        images = imagesBNARamallo
-        photos = photosBNARamallo
-    } else if (idFolder === "Banco de la Nación Argentina" && id === "Sunchales") {
-        images = imagesBNASunchales
-        photos = photosBNASunchales
-    } else if (idFolder === "Viviendas" && id === "Zaccanti") {
-        images = imagesViviendasZaccanti
-        photos = photosViviendasZaccanti
-    } else if (idFolder === "Viviendas" && id === "Romagnoli") {
-        images = imagesViviendasRomagnoli
-        photos = photosViviendasRomagnoli
-    } else if (idFolder === "Viviendas" && id === "Policelia") {
-        images = imagesViviendasPolicelia
-        photos = photosViviendasPolicelia
-    } else if (idFolder === "Industria" && id === "AES") {
-        images = imagesIndustriaAES
-        photos = photosIndustriaAES
-    } else if (idFolder === "Industria" && id === "FIPLASTO") {
-        images = imagesIndustriaFIPLASTO
-        photos = photosIndustriaFIPLASTO
-    } else if (idFolder === "Industria" && id === "Halperín") {
-        images = imagesIndustriaHalperin
-        photos = photosIndustriaHalperin
-    } else if (idFolder === "Industria" && id === "JHON DEERE") {
-        images = imagesIndustriaJHONDEERE
-        photos = photosIndustriaJHONDEERE
-    } else if (idFolder === "Industria" && id === "LOVERAZ") {
-        images = imagesIndustriaLOVERAZ
-        photos = photosIndustriaLOVERAZ
-    } else if (idFolder === "Industria" && id === "SIDERAR") {
-        images = imagesIndustriaSIDERAR
-        photos = photosIndustriaSIDERAR
-    } else if (idFolder === "Instituciones" && id === "EESTNR6") {
-        images = imagesInstitucionesEESTNR6
-        photos = photosInstitucionesEESTNR6
-    } else if (idFolder === "Instituciones" && id === "Plazoleta") {
-        images = imagesInstitucionesPlazoleta
-        photos = photosInstitucionesPlazoleta
-    } else if (idFolder === "Instituciones" && id === "Puente") {
-        images = imagesInstitucionesPuente
-        photos = photosInstitucionesPuente
-    } else if (idFolder === "Instituciones" && id === "UTN") {
-        images = imagesInstitucionesUTN
-        photos = photosInstitucionesUTN
-    } else if (idFolder === "Patrimonio historico" && id === "Patrimonio Historico") {
-        images = imagesPatrimonio
-        photos = photosPatrimonio
-    }
-
-    const imageList = images.keys().map(image => images(image));
-
-    photos.map((image, i) => {
-        image.src = imageList[i]
-    });
-
+    var imgPath = files;
+    
     return (
         <Container fluid className="project-section">
             {path !== "/" && <Navbar />}
@@ -123,22 +72,27 @@ function ProjectDetail() {
                 <h1 className="project-heading">
                     <strong className="purple">Projecto: {id} </strong>
                 </h1>
-                <h3>
+                {/* <h3>
                     Here is an example of an image carousel
-                </h3>
-                <Carousel dynamicHeight={true} showStatus={false} showIndicators={false}>
-                    {photos?.map(image =>
-                        <div >
-                            <img src={image.src} variant="top" alt="card-img" />
-                        </div>
+                </h3> */}
+
+                <Carousel>
+                    {imgPath?.map(image =>
+                        <Carousel.Item interval={1500}>
+                            <Img src={image} loader={<Loader />} class="d-block img-fluid" type="image/webp" />
+                            <Carousel.Caption>
+                            </Carousel.Caption>
+                        </Carousel.Item>
                     )}
                 </Carousel>
-                <MapContainer center={[51.505, -0.09]} style={{ height: 536 }} zoom={13} scrollWheelZoom={false}>
+
+                <div style={{ "margin-top": "2rem" }}></div>
+                <MapContainer center={[51.505, -0.09]} style={{ height: 400 }} zoom={13} scrollWheelZoom={false}>
                     <TileLayer
                         attribution=''
                         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                     />
-                    <Marker position={[51.505, -0.09]} icon={new Icon({iconUrl: markerIconPng, iconSize: [40, 40], iconAnchor: [12, 41]})}>
+                    <Marker position={[51.505, -0.09]} icon={new Icon({ iconUrl: markerIconPng, iconSize: [40, 40], iconAnchor: [12, 41] })}>
                         <Popup>
                             A pretty CSS3 popup. <br /> Easily customizable.
                         </Popup>
