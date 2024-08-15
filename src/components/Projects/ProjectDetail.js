@@ -3,25 +3,26 @@ import { Container } from "react-bootstrap";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
 import { useParams } from "react-router-dom";
-import { APIProvider, Map } from '@vis.gl/react-google-maps';
 import "yet-another-react-lightbox/styles.css";
-import Carousel from 'react-bootstrap/Carousel';
 import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import markerIconPng from "../../data/marker-icon.png"
 import { Icon } from 'leaflet';
 import Loader from "../Loader"
-import { Img } from 'react-image';
 import { storage, auth } from '../../firebase'; // Import the storage instance
 import { ref, listAll, getDownloadURL } from "firebase/storage";
 import { signInAnonymously } from "firebase/auth";
+import PhotoAlbum from "react-photo-album";
+import Lightbox from "yet-another-react-lightbox";
+import "yet-another-react-lightbox/styles.css";
 
 function ProjectDetail() {
     var path = window.location.pathname;
     const { idFolder, id } = useParams();
     const [files, setFiles] = useState([]);
-    var images = [];
-    var pathsImgStorage = "";    
+    const [loaded, setLoaded] = useState(false);
+    const [index, setIndex] = useState(-1);
+    var pathsImgStorage = "";
 
     if (idFolder === "Banco de la Nación Argentina" && id === "Esperanza") pathsImgStorage = "BNA/Esperanza"
     else if (idFolder === "Banco de la Nación Argentina" && id === "Pergamino") pathsImgStorage = "BNA/Pergamino"
@@ -53,7 +54,15 @@ function ProjectDetail() {
                 const res = await listAll(storageRef);
                 const filePromises = res.items.map((itemRef) => getDownloadURL(itemRef));
                 const fileUrls = await Promise.all(filePromises);
-                setFiles(fileUrls);
+
+                fileUrls?.map((img) => {
+                    const imagen = new Image();
+                    imagen.src = img;
+                    imagen.onload = () => {
+                        const test = { src: img, width: imagen.width, height: imagen.height }
+                        setFiles(files => [...files, test]);
+                    };
+                })
             } catch (error) {
                 console.error("Error listing files", error);
             }
@@ -62,8 +71,6 @@ function ProjectDetail() {
         listFiles();
     }, []);
 
-    var imgPath = files;
-    
     return (
         <Container fluid className="project-section">
             {path !== "/" && <Navbar />}
@@ -72,19 +79,21 @@ function ProjectDetail() {
                 <h1 className="project-heading">
                     <strong className="purple">Projecto: {id} </strong>
                 </h1>
-                {/* <h3>
-                    Here is an example of an image carousel
-                </h3> */}
 
-                <Carousel>
-                    {imgPath?.map(image =>
-                        <Carousel.Item interval={1500}>
-                            <Img src={image} loader={<Loader />} class="d-block img-fluid" type="image/webp" />
-                            <Carousel.Caption>
-                            </Carousel.Caption>
-                        </Carousel.Item>
-                    )}
-                </Carousel>
+                {files.length === 0 ? (<Loader />) : (
+                    <div>
+                        <PhotoAlbum layout="rows"
+                            photos={files}
+                            loader={<Loader />}
+                            onClick={({ index: current }) => setIndex(current)} />
+                        <Lightbox
+                            index={index}
+                            slides={files}
+                            open={index >= 0}
+                            close={() => setIndex(-1)}
+                        />
+                    </div>
+                )}
 
                 <div style={{ "margin-top": "2rem" }}></div>
                 <MapContainer center={[51.505, -0.09]} style={{ height: 400 }} zoom={13} scrollWheelZoom={false}>

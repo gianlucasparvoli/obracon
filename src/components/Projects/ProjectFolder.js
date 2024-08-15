@@ -37,11 +37,11 @@ function ProjectFolder() {
     "BNA/Pergamino/Pergamino1.jpg",
     "BNA/Sunchales/Sunchales1.jpg",
     "BNA/Concepcion_del_uruguay/concepcion3.jpeg",
-    "Industria/AES/aes", //falta AES
+    "Industria/AES/AES5.jpg", 
     "Industria/SIDERAR/SIDERAR2.jpg",
     "Industria/Zeni_aserraderos/Zeni_aserraderos1.jpg",
     "Instituciones/EESTNR6/EESTNR6_1.jpg",
-    "Instituciones/UTN/utn", //falta UTN
+    "Instituciones/UTN/UTN5.jpg", 
     "Viviendas/Dominguez/Dominguez2.jpg",
     "Viviendas/Policelia/Policelia2.JPG",
     "Viviendas/Zaccanti/Zaccanti3.JPG"

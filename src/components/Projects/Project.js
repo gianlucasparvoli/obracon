@@ -19,7 +19,7 @@ function Projects() {
   const isMobile = resolution <= 768;
 
   var pathsImgStorage = [
-    "Industria/SIDERAR/SIDERAR1.jpg",
+    "Industria/AES/AES5.jpg",
     "Instituciones/EESTNR6/EESTNR6_2.jpg",
     "Viviendas/Zaccanti/Zaccanti4.JPG",
     "BNA/Pergamino/Pergamino1.jpg",
