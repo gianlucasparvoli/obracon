@@ -401,9 +401,14 @@ nav {
   }
 }
 
+.nav-logo-container {
+  max-width: 22%;
+  margin-top: 1rem;
+}
+
 @media (max-width: 800px) {
   .nav-logo-container {
-    max-width: 140px;
+    max-width: 170px;
   }
 
   .navbar-links-container {
