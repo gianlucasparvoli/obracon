@@ -8,9 +8,15 @@ import { useHref, useParams } from "react-router-dom";
 import { storage, auth } from '../../firebase'; // Import the storage instance
 import { ref, listAll, getDownloadURL } from "firebase/storage";
 import { signInAnonymously } from "firebase/auth";
+import jsonLocations from "../../data/location.json";
+import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
+import "leaflet/dist/leaflet.css";
+import markerIconPng from "../../data/marker-icon.png";
+import { Icon } from 'leaflet';
 
 function ProjectFolder() {
   var path = window.location.pathname;
+
   const { idFolder } = useParams();
 
   const [BNAEsperanza, setBNAEsperanza] = useState("");
@@ -29,6 +35,17 @@ function ProjectFolder() {
   const [ViviendasPolicelia, setViviendasPolicelia] = useState("");
   const [ViviendasZaccanti, setViviendasZaccanti] = useState("");
 
+  var folderLocation = jsonLocations[idFolder] || null;
+  var locations = [];
+  var idPlaces = []
+
+  if (folderLocation) {
+    Object.entries(folderLocation).forEach(([id, content]) => {
+      if (id) idPlaces.push(id);
+      if (content && content?.lat && content?.long) locations.push([content.lat, content.long]);
+    })
+  }
+
   const resolution = window.innerWidth;
   const isMobile = resolution <= 768;
 
@@ -37,11 +54,11 @@ function ProjectFolder() {
     "BNA/Pergamino/Pergamino1.jpg",
     "BNA/Sunchales/Sunchales1.jpg",
     "BNA/Concepcion_del_uruguay/concepcion3.jpeg",
-    "Industria/AES/AES5.jpg", 
+    "Industria/AES/AES5.jpg",
     "Industria/SIDERAR/SIDERAR2.jpg",
     "Industria/Zeni_aserraderos/Zeni_aserraderos1.jpg",
     "Instituciones/EESTNR6/EESTNR6_1.jpg",
-    "Instituciones/UTN/UTN5.jpg", 
+    "Instituciones/UTN/UTN5.jpg",
     "Viviendas/Dominguez/Dominguez2.jpg",
     "Viviendas/Policelia/Policelia2.JPG",
     "Viviendas/Zaccanti/Zaccanti3.JPG"
@@ -75,7 +92,6 @@ function ProjectFolder() {
           else if (itemNum == 9) setViviendasDominguez(fileUrls)
           else if (itemNum == 10) setViviendasPolicelia(fileUrls)
           else if (itemNum == 11) setViviendasZaccanti(fileUrls)
-
 
         } catch (error) {
           console.error("Error listing files", error);
@@ -149,7 +165,7 @@ function ProjectFolder() {
   if (idFolder === "Banco de la Nación Argentina") projectFolders = projectsBNA
   else if (idFolder === "Industria") projectFolders = projectsIndustria
   else if (idFolder === "Instituciones") projectFolders = projectsInstituciones
-  else if (idFolder === "Viviendas") projectFolders = projectsViviendas 
+  else if (idFolder === "Viviendas") projectFolders = projectsViviendas
 
   return (
     <Container fluid >
@@ -167,7 +183,7 @@ function ProjectFolder() {
                     <h3 > {item.title} </h3>
                     {/* <p class="lead">And an even wittier subheading.</p> */}
                     <a className="text-white" href={"/project/" + idFolder + "/" + item.title}
-                      // onClick={navigate("/project/" + idFolder + "/" + item.title)}
+                    // onClick={navigate("/project/" + idFolder + "/" + item.title)}
                     >Ver proyecto</a>
                   </div>
                   <div class="shadow-sm mx-auto" style={{ width: "100%" }}>
@@ -177,9 +193,25 @@ function ProjectFolder() {
               </div>
             ))}
           </div>
+
+          <div style={{ "margin-top": "2rem" }}></div>
+          {locations.length > 0 && (
+            <MapContainer center={locations[0]} style={{ height: 400 }} zoom={locations.length < 5 ? 10 : 5} scrollWheelZoom={false}>
+              <TileLayer
+                attribution=''
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              />
+              {locations.map((marker, i) => (
+                <Marker position={marker}
+                  icon={new Icon({ iconUrl: markerIconPng, iconSize: [40, 40], iconAnchor: [12, 41] })}>
+                  <Popup>
+                    {idPlaces[i]}
+                  </Popup>
+                </Marker>
+              ))}
+            </MapContainer>
+          )}
         </div>
-
-
       </div>
       {path !== "/" && <Footer />}
     </Container>

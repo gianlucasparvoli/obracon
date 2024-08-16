@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 import "yet-another-react-lightbox/styles.css";
 import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-import markerIconPng from "../../data/marker-icon.png"
+import markerIconPng from "../../data/marker-icon.png";
 import { Icon } from 'leaflet';
 import Loader from "../Loader"
 import { storage, auth } from '../../firebase'; // Import the storage instance
@@ -15,14 +15,16 @@ import { signInAnonymously } from "firebase/auth";
 import PhotoAlbum from "react-photo-album";
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
+import jsonLocations from "../../data/location.json";
 
 function ProjectDetail() {
     var path = window.location.pathname;
     const { idFolder, id } = useParams();
     const [files, setFiles] = useState([]);
-    const [loaded, setLoaded] = useState(false);
     const [index, setIndex] = useState(-1);
     var pathsImgStorage = "";
+    var preLocation = jsonLocations[idFolder] || null;
+    var location = preLocation ? preLocation[id] : null;
 
     if (idFolder === "Banco de la Nación Argentina" && id === "Esperanza") pathsImgStorage = "BNA/Esperanza"
     else if (idFolder === "Banco de la Nación Argentina" && id === "Pergamino") pathsImgStorage = "BNA/Pergamino"
@@ -96,17 +98,19 @@ function ProjectDetail() {
                 )}
 
                 <div style={{ "margin-top": "2rem" }}></div>
-                <MapContainer center={[51.505, -0.09]} style={{ height: 400 }} zoom={13} scrollWheelZoom={false}>
-                    <TileLayer
-                        attribution=''
-                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                    />
-                    <Marker position={[51.505, -0.09]} icon={new Icon({ iconUrl: markerIconPng, iconSize: [40, 40], iconAnchor: [12, 41] })}>
-                        <Popup>
-                            A pretty CSS3 popup. <br /> Easily customizable.
-                        </Popup>
-                    </Marker>
-                </MapContainer>
+                {location && (
+                    <MapContainer center={[location['lat'], location['long']]} style={{ height: 400 }} zoom={16} scrollWheelZoom={false}>
+                        <TileLayer
+                            attribution=''
+                            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                        />
+                        <Marker position={[location['lat'], location['long']]} icon={new Icon({ iconUrl: markerIconPng, iconSize: [40, 40], iconAnchor: [12, 41] })}>
+                            <Popup>
+                                {id}
+                            </Popup>
+                        </Marker>
+                    </MapContainer>
+                )}
                 {path !== "/" && <Footer />}
             </div>
 

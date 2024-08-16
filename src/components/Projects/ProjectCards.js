@@ -1,7 +1,6 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
-import { BsGithub } from "react-icons/bs";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
@@ -15,7 +14,6 @@ function ProjectCards(props) {
         {props?.imgPath?.map(image =>
           <div>
             <img src={image} variant="top" alt="card-img" />
-            {/* <p>{props.title}</p> */}
           </div>)}
       </Carousel>
 
