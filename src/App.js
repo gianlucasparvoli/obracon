@@ -8,6 +8,7 @@ import Contact from "./components/Contact";
 import Team from "./components/Team";
 import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 import { FloatingWhatsApp } from 'react-floating-whatsapp'
+import Logo from "./Assets/oracon-logo-wsp.jpg";
 
 function App() {
   return (
@@ -27,7 +28,7 @@ function App() {
       <FloatingWhatsApp
         phoneNumber={+5493364603431}
         accountName={"Obracon"}
-        avatar={"https://img.freepik.com/premium-vector/building-logo-icon-design-template-vector_67715-555.jpg"}
+        avatar={Logo}
         statusMessage={"En línea"}
         chatMessage={"Hola, en que podemos ayudarte?"}
       />

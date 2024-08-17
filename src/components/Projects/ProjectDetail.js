@@ -79,7 +79,7 @@ function ProjectDetail() {
             <div style={{ "marginTop": "5rem" }}>
 
                 <h1 className="project-heading">
-                    <strong className="purple">Projecto: {id} </strong>
+                    <strong className="purple">Proyecto: {id} </strong>
                 </h1>
 
                 {files.length === 0 ? (<Loader />) : (
