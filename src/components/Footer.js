@@ -1,9 +1,7 @@
 import React from "react";
 import Logo from "../Assets/obracon-logo.png";
-import { BsTwitter } from "react-icons/bs";
 import { SiLinkedin } from "react-icons/si";
-import { BsYoutube } from "react-icons/bs";
-import { FaFacebookF } from "react-icons/fa";
+import { BsInstagram } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.css';
 
@@ -15,28 +13,21 @@ const Footer = () => {
         <div className="footer-logo-container">
           <img src={Logo} alt="" onClick={() => navigate("/")} />
         </div>
-        <div className="footer-icons">
-          <BsTwitter />
-          <SiLinkedin />
-          <BsYoutube />
-          <FaFacebookF />
+        <div className="footer-icons d-flex align-items-center justify-content-center">
+          <a href="https://www.linkedin.com/company/102412033/admin/dashboard/" target="_blank"> <SiLinkedin /> </a>
+          <a href="" target="_blank"><BsInstagram /></a>
         </div>
       </div>
       <div className="footer-section-two">
         <div className="footer-section-columns">
-          <a href="https://maps.app.goo.gl/PJakMtE5MGEQnF5G9" target="_blank">
-            Oficina/Obrador - Calle 4 este N° 1030
-            COMIRSA - Parque industrial
-             </a>
-          <a>Ramallo - (San Nicolás de los Arroyos, Bs. As) -  Argentina</a>
-          <a>info@obracon.com.ar</a>
-          <a>+5493364603431</a>
+          <h5><a href="https://maps.app.goo.gl/PJ3AzJvWHnJ7JqSD8" target="_blank">
+            Oficina / Obrador - Calle 4 este N° 1030
+            - Parque industrial COMIRSA
+          </a></h5>
+          <h5>Ramallo (San Nicolás de los Arroyos), Buenos Aires, Argentina</h5>
+          <h5>info@obracon.com.ar</h5>
+          <h5>+5493364603431</h5>
         </div>
-        {/* <div className="footer-section-columns">
-          <span>Terms & Conditions</span>
-          <span>Privacy Policy</span>
-          <span>Obracon © {(new Date().getFullYear())}</span>
-        </div> */}
       </div>
     </div>
   );
