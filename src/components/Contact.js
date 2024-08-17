@@ -27,7 +27,7 @@ const Contact = () => {
     const serviceId = process.env.REACT_APP_emailjs_serviceId;
     const templateId = process.env.REACT_APP_emailjs_templateId;
     const publicKey = process.env.REACT_APP_emailjs_publicKey;
-    
+
     formParams["g-recaptcha-response"] = recaptcha;
 
     // Send the email using EmailJS
@@ -51,8 +51,8 @@ const Contact = () => {
   return (
     <div>
       {path !== "/" && <Navbar />}
-
-      <form style={{ "backgroundColor": "#fcf5c7", "padding": "2rem", "borderRadius": "4rem" ,"margin-top": path == "/" ? "20rem" : "5rem"}} onSubmit={handleSubmit(sendEmail)}>
+      {!isMobile && <div style={{ "marginTop": path == "/" && "15rem" }}> </div>}
+      <form style={{ "backgroundColor": "#fcf5c7", "padding": "2rem", "borderRadius": "4rem", "margin-top": "5rem" }} onSubmit={handleSubmit(sendEmail)}>
         <h3 className="text-center">¿Querés contactarte con nosotros? Completá el siguiente formulario:</h3>
 
         <div className="mt-4 form-group row d-flex justify-content-center">
@@ -101,10 +101,10 @@ const Contact = () => {
             </div>
             : null}
 
-        <div style={{ "margin": "0 auto", "textAlign": "center"  }} className="mt-4">
+        <div style={{ "margin": "0 auto", "textAlign": "center" }} className="mt-4">
           <ReCAPTCHA
             key={isMobile ? "compact-recaptcha" : "normal-recaptcha"}
-            style={{ "display": "inline-block"}}
+            style={{ "display": "inline-block" }}
             sitekey={captcha_sitekey}
             onChange={getCaptcha}
           />

@@ -61,18 +61,22 @@ function Projects() {
         "img": InstitucionImg,
         "title": "Instituciones",
         "text": "",
+        "id": "0"
       }, {
         "img": IndustriaImg,
         "title": "Industria",
         "text": "",
+        "id": "1"
       }, {
         "img": ViviendaImg,
         "title": "Viviendas",
         "text": "",
+        "id": "2"
       }, {
         "img": BancoImg,
         "title": "Banco de la Nación Argentina",
         "text": "",
+        "id": "3"
       }
     ]
   };
@@ -80,23 +84,28 @@ function Projects() {
   return (
     <div >
       {path !== "/" && <Navbar />}
-      <div style={{ "marginTop": path == "/" ? "20rem" : "5rem" }}>
+      {!isMobile && <div style={{ "marginTop": path == "/" && "15rem" }}> </div>}
+      <div style={{ "marginTop": "5rem" }}>
         <h1 className="project-heading text-center">
           <strong className="purple">Nuestros proyectos </strong>
         </h1>
         {isMobile ?
 
           // MOBILE VERSION
-          <Accordion defaultActiveKey="1" style={{ "marginTop": "2rem" }}>
+          <Accordion defaultActiveKey="0" style={{ "marginTop": "2rem" }}>
             {workInfoData?.projects?.map((item, index) => (
-              <Accordion.Item eventKey={index}>
+              <Accordion.Item eventKey={item.id}>
                 <Accordion.Header>{item.title}</Accordion.Header>
                 <Accordion.Body>
-                  <div className="card" >
-                    <Img src={item.img} loader={<Loader />} className="card-img-top" alt="..." />
-                    <div className="card-body text-center">
-                      <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                      <h5 className="text-center"><a className="btn btn-dark" href={"/project/" + item.title}>Ir a {item.title}</a></h5>
+                  <div className="row" >
+                    <div class="shadow-sm mx-auto" style={{ width: "100%" }}>
+                      <Img src={item.img} loader={<Loader />} className="card-img-top img-fluid rounded" alt="..." />
+                    </div>
+                    <div class="my-3 py-3" >
+                      {/* <p className="card-text">{item.text}</p> */}
+                      <h3 className="text-center">
+                        <a className="btn btn-dark" href={"/project/" + item.title}>Ir a {item.title}</a>
+                      </h3>
                     </div>
                   </div>
                 </Accordion.Body>

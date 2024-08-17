@@ -181,9 +181,7 @@ function ProjectFolder() {
                 <div class="bg-dark mr-md-3 px-3 md-5 pb-2 px-md-5 text-center text-white overflow-hidden" >
                   <div class="my-3 py-3" >
                     <h3 > {item.title} </h3>
-                    {/* <p class="lead">And an even wittier subheading.</p> */}
                     <a className="text-white" href={"/project/" + idFolder + "/" + item.title}
-                    // onClick={navigate("/project/" + idFolder + "/" + item.title)}
                     >Ver proyecto</a>
                   </div>
                   <div class="shadow-sm mx-auto" style={{ width: "100%" }}>

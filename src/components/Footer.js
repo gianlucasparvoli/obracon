@@ -6,13 +6,18 @@ import { useNavigate } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.css';
 
 const Footer = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const resolution = window.innerWidth;
+  const isMobile = resolution <= 768;
+
   return (
     <div className="footer-wrapper d-flex justify-content-center">
       <div className="footer-section-one">
-        <div className="footer-logo-container">
-          <img src={Logo} alt="" onClick={() => navigate("/")} />
-        </div>
+        {!isMobile &&
+          <div className="footer-logo-container">
+            <img src={Logo} alt="" onClick={() => navigate("/")} />
+          </div>
+        }
         <div className="footer-icons d-flex align-items-center justify-content-center">
           <a href="https://www.linkedin.com/company/102412033/admin/dashboard/" target="_blank"> <SiLinkedin /> </a>
           <a href="" target="_blank"><BsInstagram /></a>
