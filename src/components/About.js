@@ -41,9 +41,10 @@ const About = () => {
   var imgPath = files;
 
   return (
-    <div>
+    <div style={{ "margin-top": "1rem" }}>
       {path !== "/" && <Navbar />}
-      <div className="about-section-container" style={{ "margin-top": path == "/" ? "20rem" : "5rem" }}>
+      {path == "/" && <div className="line" />}
+      <div className="about-section-container" style={{ "padding-top": "1rem","margin-top": path !== "/" && "5rem" }}>
         <div className="about-background-image-container">
           {/* <Img src={imgPath[0]} loader={<MyLoader />} class="d-block img-fluid" type="image/webp" /> */}
           <img src={AboutBackground} alt="" />

@@ -1,7 +1,4 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-//import Home1 from "../data/HomeImages/1.webp";
-//import Home2 from "../data/HomeImages/2.webp";
-//import Home3 from "../data/HomeImages/3.webp";
 import Carousel from 'react-bootstrap/Carousel';
 import Loader from "./Loader"
 import { Img } from 'react-image';
@@ -23,7 +20,7 @@ const Home = () => {
 
   useEffect(() => {
     const listFiles = async () => {
-      await authenticate(); 
+      await authenticate();
       const storageRef = ref(storage, 'HomeImages');
       try {
         const res = await listAll(storageRef);
@@ -37,26 +34,50 @@ const Home = () => {
 
     listFiles();
   }, []);
-  
+
   var imgPath = files;
+  var txtHome = [{
+    "title": "Trayectoria",
+    "text" : "Mas de X años de experiencia en todo tipo de obras"
+  }, {
+    "title": "Testimonios",
+    "text" : "Comentarios positivos sobre todos nuestros cliente a lo largo de los años"
+  }, {
+    "title": "Soluciones Rapidas",
+    "text" : "Nuestro equipo de profesionales adopta metodologías BIM para un mayor desempeño"
+  }];
 
   return (
     <div style={{ "margin-top": "1rem" }}>
-      <Carousel>
+      {/* <div class="divider py-1 rounded bg-dark mb-1" ></div> */}
+      <div className="line"></div>
 
-        {imgPath?.map(image =>
-          <Carousel.Item interval={1500}>
+      <Carousel style={{ "padding-top": "1rem" }} 
+      controls={false}
+      wrap={true}
+      >
 
+        {imgPath?.map((image,i )=>
+          <Carousel.Item 
+          interval={3000}
+          >
 
-            <Img src={image} loader={<Loader />} class="d-block img-fluid" type="image/webp" />
-
-            <Carousel.Caption>
-              {/*  <h3>First slide label</h3>
-              <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p> */}
-            </Carousel.Caption>
+            <div className="container text-center " style={{ border: "2px solid black",background: "#FCC913" }}>
+              <div className="row" >
+                <div className="col-3 my-auto">
+                  <h3 className="my-auto"><b>{txtHome[i].title}</b></h3>
+                  <br></br>
+                  <h5>{txtHome[i].text}</h5>
+                </div>
+                <div className="col-9 my-1">
+                  <Img src={image} loader={<Loader />} class="d-block rounded img-fluid" type="image/webp" />
+                </div>
+              </div>
+            </div>
           </Carousel.Item>
         )}
       </Carousel>
+
     </div>
   );
 };

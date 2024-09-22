@@ -8,7 +8,7 @@ import Contact from "./Contact";
 
 const MainPage = () => {
   return (
-    <div className="home-container">
+    <div >
       <Navbar />
       <Home />
       <About />

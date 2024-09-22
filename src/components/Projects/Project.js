@@ -82,17 +82,18 @@ function Projects() {
   };
 
   return (
-    <div >
+    <div style={{ "margin-top": "1rem" }}>
       {path !== "/" && <Navbar />}
-      {!isMobile && <div style={{ "marginTop": path == "/" && "15rem" }}> </div>}
-      <div style={{ "marginTop": "5rem" }}>
+      {path == "/" && <div className="line" />}
+      {!isMobile && <div style={{ "padding-top": "1rem", "marginTop": path !== "/" && "5rem" }}> </div>}
+      <div >
         <h1 className="project-heading text-center">
           <strong className="purple">Nuestros proyectos </strong>
         </h1>
         {isMobile ?
 
           // MOBILE VERSION
-          <Accordion defaultActiveKey="0" style={{ "marginTop": "2rem" }}>
+          <Accordion defaultActiveKey="0" style={{ "marginTop": "2rem", border: "2px solid black", background: "#FDD455" }}>
             {workInfoData?.projects?.map((item, index) => (
               <Accordion.Item eventKey={item.id}>
                 <Accordion.Header>{item.title}</Accordion.Header>
@@ -115,34 +116,51 @@ function Projects() {
           :
 
           // DESKTOP VERSION
-          <div className="container text-center">
-            <div className="row">
-              <div className="col-2">
-                <ul className="nav  flex-column bg-dark" style={{ "marginTop": "15rem", "paddingBottom": "4rem" }}>
-                  {workInfoData?.projects?.map((item, index) => (
-                    <li className="nav-item mt-5">
-                      <h5><a className="nav-link text-light" aria-current="page"
-                        href={"#" + item.title}
-                        onClick={() => setShowItem(item.title)}>
-                        {item.title}
-                      </a></h5>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="col-10" style={{ "marginTop": "5rem" }}>
-                {workInfoData?.projects?.map((item, index) => (
-                  showItem == item.title &&
-                  <div className="card" >
-                    <Img src={item.img} loader={<Loader />} className="card-img-top" type="image/webp" loading="lazy" decoding="async" />
-                    <div className="card-body">
-                      <p className="card-text">{item.text}</p>
-                      <h5 ><a className="btn btn-dark" href={"/project/" + item.title}>Ir a {item.title}</a></h5>
-                    </div>
-                  </div>
-                ))}
-              </div>
+          <div className="row">
+            <div className="col-12 mt-2">
+              <div className="container text-center">
+                <div class="card text-center" style={{ border: "2px solid black", background: "#FCC913" }}>
+                  <div class="navbar navbar-expand-lg card-header " style={{ border: "1px solid black", "border-style": "solid none" }}>
+                    <ul class="navbar-nav">
+                      {workInfoData?.projects?.map((item, index) => (
+                        <li class="nav-item active">
+                          <h5><a className="nav-link" aria-current="page"
+                            href={"#" + item.title}
+                            onClick={() => setShowItem(item.title)}>
+                            {item.title}
+                          </a></h5>
+                        </li>
+                      ))}
 
+                    </ul>
+                  </div>
+                  <div class="card-body">
+                    {workInfoData?.projects?.map((item, index) => (
+                      showItem == item.title &&
+                      // <div className="card" >
+
+                      <div className="team-item position-relative">
+                        <Img src={item.img} loader={<Loader />} className="card-img-top" type="image/webp" loading="lazy" decoding="async" style={{"max-width": "1000px",  width:"100%"}}/>
+                        {/* <img className="img-fluid rounded" src={member.imgSrc} alt="" /> */}
+                        <div className="team-text bg-white rounded-end p-4">
+                          <div>
+                            {/* <h5>{item.title}</h5> */}
+                            <a className="text-dark" href={"/project/" + item.title}>Ir a {item.title}</a>
+                          </div>
+                        </div>
+                        {/* </div> */}
+                        {/* <div className="card-body">
+                          <p className="card-text">{item.text}</p>
+                          <h5 ><a className="btn btn-dark" href={"/project/" + item.title}>Ir a {item.title}</a></h5>
+                        </div> */}
+                      </div>
+                    ))}
+                    {/* <h5 class="card-title">Special title treatment</h5>
+                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a> */}
+                  </div>
+                </div>
+              </div>
             </div>
 
           </div>

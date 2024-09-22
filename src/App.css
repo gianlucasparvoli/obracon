@@ -22,11 +22,11 @@ img {
 body {
   max-width: 100%;
   overflow-x: hidden;
-  background: #e0eafc;
+  background: #E3E1E2;
   /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #e0eafc, #cfdef3);
+  background: -webkit-linear-gradient(to right, #E3E1E2, #FFE9B4);
   /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #e0eafc, #cfdef3);
+  background: linear-gradient(to right, #E3E1E2, #FFE9B4);
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
@@ -146,7 +146,7 @@ nav {
 }
 
 .about-section-container {
-  margin-top: 20rem;
+  margin-top: 1rem;
   position: relative;
   display: flex;
   align-items: center;
@@ -246,9 +246,8 @@ nav {
 }
 
 .footer-wrapper {
-  margin: 6rem 0rem;
+  margin: 2rem 0rem;
   display: flex;
-  margin-top: 10rem;
 }
 
 .footer-logo-container {
@@ -464,9 +463,9 @@ nav {
     cursor: pointer;
   }
 
-  .about-section-container {
+  /* .about-section-container {
     margin-top: 5rem !important;
-  }
+  } */
 
   .about-buttons-container {
     justify-content: center;
@@ -595,10 +594,22 @@ nav {
   }
 }
 
-.carousel-inner>img, .carousel-inner>.item>a>img {
+.carousel-inner>img,
+.carousel-inner>.item>a>img {
   display: block;
   height: auto;
   max-width: 100%;
   line-height: 1;
   width: 100%;
-  }
+}
+
+
+.line {
+  /* display: flex; */
+  position: absolute;
+  left: 0;
+  /* flex-wrap: nowrap; */
+  /* flex-grow: 1; */
+  width: 100%;
+  border-top: 3px solid black;
+}

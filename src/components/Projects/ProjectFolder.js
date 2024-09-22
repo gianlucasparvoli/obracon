@@ -178,7 +178,7 @@ function ProjectFolder() {
           <div className="row">
             {projectFolders?.map((item, index) => (
               <div class="col-md-6 mt-2 my-md-3 pl-md-3 " >
-                <div class="bg-dark mr-md-3 px-3 md-5 pb-2 px-md-5 text-center text-white overflow-hidden" >
+                <div class="mr-md-3 px-3 md-5 pb-2 px-md-5 text-center text-white overflow-hidden" style={{ border: "2px solid black",background: "#B7B7B6" }}>
                   <div class="my-3 py-3" >
                     <h3 > {item.title} </h3>
                     <a className="text-white" href={"/project/" + idFolder + "/" + item.title}
