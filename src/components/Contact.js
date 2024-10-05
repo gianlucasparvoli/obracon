@@ -51,11 +51,11 @@ const Contact = () => {
   return (
     <div style={{ "margin-top": "1rem" }}>
       {path !== "/" && <Navbar />}
-      {path == "/" && <div className="line" />}
+      {path == "/" && <div className="line" style={{ borderColor: "#FCC913", borderWidth: "1px", borderStyle: "solid" }}></div>}
       {/* <div class="divider py-1 rounded bg-dark mb-1"></div> */}
       {/* {!isMobile && <div style={{ "marginTop": path == "/" && "15rem" }}> </div>} */}
       <div style={{"padding-top": "1px"}}>
-        <form style={{ "backgroundColor": "#FDD455", "padding": "2rem", "borderRadius": "4rem", "margin-top": path !== "/" ? "5rem": "2rem" }} onSubmit={handleSubmit(sendEmail)}>
+        <form style={{ border: "2px solid #909191","backgroundColor": "#b7b7b6", "padding": "2rem", "borderRadius": "1rem", "margin-top": path !== "/" ? "5rem": "1rem" }} onSubmit={handleSubmit(sendEmail)}>
           <h3 className="text-center">¿Querés contactarte con nosotros? Completá el siguiente formulario:</h3>
 
           <div className="mt-4 form-group row d-flex justify-content-center">

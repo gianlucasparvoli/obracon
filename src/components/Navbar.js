@@ -35,11 +35,12 @@ const Navbar = () => {
       text: "Proyectos",
       icon: <HomeWorkIcon />,
       path: "/projects"
-    },{
-      text: "Nuestro Equipo",
-      icon: <GroupIcon />,
-      path: "/team"
     },
+    // {
+    //   text: "Nuestro Equipo",
+    //   icon: <GroupIcon />,
+    //   path: "/team"
+    // },
     {
       text: "Contacto",
       icon: <PhoneRoundedIcon />,
@@ -52,7 +53,7 @@ const Navbar = () => {
       <div className="nav-logo-container">
         <img src={Logo} alt="" onClick={() => navigate("/")}/>
       </div>
-      <div className="navbar-links-container">
+      <div className="navbar-links-container mt-3">
         {menuOptions.map((item) => (
           <a onClick={() => navigate(item.path)}>
             {item.text}

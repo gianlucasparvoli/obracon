@@ -50,7 +50,9 @@ const Home = () => {
   return (
     <div style={{ "margin-top": "1rem" }}>
       {/* <div class="divider py-1 rounded bg-dark mb-1" ></div> */}
-      <div className="line"></div>
+      {/* <div className="line"></div> */}
+      <div className="line" style={{ borderColor: "#FCC913", borderWidth: "1px", borderStyle: "solid" }}></div>
+
 
       <Carousel style={{ "padding-top": "1rem" }} 
       controls={false}
@@ -62,7 +64,7 @@ const Home = () => {
           interval={3000}
           >
 
-            <div className="container text-center " style={{ border: "2px solid black",background: "#FCC913" }}>
+            <div className="text-center " style={{ border: "2px solid #909191","borderRadius": "1rem" ,background: "#b7b7b6" }}>
               <div className="row" >
                 <div className="col-3 my-auto">
                   <h3 className="my-auto"><b>{txtHome[i].title}</b></h3>

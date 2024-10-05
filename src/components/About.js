@@ -43,12 +43,12 @@ const About = () => {
   return (
     <div style={{ "margin-top": "1rem" }}>
       {path !== "/" && <Navbar />}
-      {path == "/" && <div className="line" />}
+      {path == "/" && <div className="line" style={{ borderColor: "#FCC913", borderWidth: "1px", borderStyle: "solid" }}></div>}
       <div className="about-section-container" style={{ "padding-top": "1rem","margin-top": path !== "/" && "5rem" }}>
-        <div className="about-background-image-container">
+        {/* <div className="about-background-image-container"> */}
           {/* <Img src={imgPath[0]} loader={<MyLoader />} class="d-block img-fluid" type="image/webp" /> */}
-          <img src={AboutBackground} alt="" />
-        </div>
+          {/* <img src={AboutBackground} alt="" /> */}
+        {/* </div> */}
         <div className="about-section-image-container">
           <Img src={imgPath[0]} loader={<Loader />} class="d-block img-fluid" type="image/webp" />
           {/* <img src={AboutBackgroundImage} alt="" /> */}
@@ -61,16 +61,6 @@ const About = () => {
           <p className="primary-text">
             Obracon es una empresa argentina especializada en brindar servicios dentro del sector de la construcción. Con más de 20 años de trayectoria, hemos llevado a cabo una amplia variedad de proyectos, tanto industriales como residenciales, colaborando con destacadas entidades como Ternium Siderar, AES y el Banco Nación de la República Argentina, entre otras. <br /> Nuestro equipo de profesionales abarca todas las etapas de un proyecto, desde la concepción inicial hasta la ejecución final, utilizando tecnología de punta y adoptando metodologías BIM para garantizar la eficiencia y precisión en cada obra.
           </p>
-          {/* <p className="primary-text">
-            Non tincidunt magna non et elit. Dolor turpis molestie dui magnis
-            facilisis at fringilla quam.
-          </p>
-          <div className="about-buttons-container">
-            <button className="secondary-button">Learn More</button>
-            <button className="watch-video-button">
-              <BsFillPlayCircleFill /> Watch Video
-            </button>
-          </div> */}
         </div>
       </div>
       {path !== "/" && <Footer />}

@@ -13,7 +13,7 @@ const Footer = () => {
 
   return (
     <div>
-      {path == "/" && <div className="line" />}
+      {path == "/" && <div className="line" style={{ borderColor: "#FCC913", borderWidth: "1px", borderStyle: "solid" }}></div>}
       <div style={{"padding-top": "1rem"}} className="footer-wrapper d-flex justify-content-center">
 
         <div className="footer-section-one">

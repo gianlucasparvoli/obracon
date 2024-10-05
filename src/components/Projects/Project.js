@@ -84,16 +84,16 @@ function Projects() {
   return (
     <div style={{ "margin-top": "1rem" }}>
       {path !== "/" && <Navbar />}
-      {path == "/" && <div className="line" />}
+      {path == "/" && <div className="line" style={{ borderColor: "#FCC913", borderWidth: "1px", borderStyle: "solid" }}></div>}
       {!isMobile && <div style={{ "padding-top": "1rem", "marginTop": path !== "/" && "5rem" }}> </div>}
       <div >
         <h1 className="project-heading text-center">
-          <strong className="purple">Nuestros proyectos </strong>
+          <strong >Nuestros Proyectos </strong>
         </h1>
         {isMobile ?
 
           // MOBILE VERSION
-          <Accordion defaultActiveKey="0" style={{ "marginTop": "2rem", border: "2px solid black", background: "#FDD455" }}>
+          <Accordion defaultActiveKey="0" style={{ "marginTop": "2rem", border: "2px solid #FCC913", background: "#b7b7b6" }}>
             {workInfoData?.projects?.map((item, index) => (
               <Accordion.Item eventKey={item.id}>
                 <Accordion.Header>{item.title}</Accordion.Header>
@@ -118,12 +118,12 @@ function Projects() {
           // DESKTOP VERSION
           <div className="row">
             <div className="col-12 mt-2">
-              <div className="container text-center">
-                <div class="card text-center" style={{ border: "2px solid black", background: "#FCC913" }}>
-                  <div class="navbar navbar-expand-lg card-header " style={{ border: "1px solid black", "border-style": "solid none" }}>
+              <div className="text-center">
+                <div class="card text-center" style={{ border: "2px solid #909191", background: "#b7b7b6", "borderRadius": "1rem" }}>
+                  <div class="navbar navbar-expand-lg card-header " >
                     <ul class="navbar-nav">
                       {workInfoData?.projects?.map((item, index) => (
-                        <li class="nav-item active">
+                        <li class="nav-item active pt-2">
                           <h5><a className="nav-link" aria-current="page"
                             href={"#" + item.title}
                             onClick={() => setShowItem(item.title)}>
@@ -140,7 +140,7 @@ function Projects() {
                       // <div className="card" >
 
                       <div className="team-item position-relative">
-                        <Img src={item.img} loader={<Loader />} className="card-img-top" type="image/webp" loading="lazy" decoding="async" style={{"max-width": "1000px",  width:"100%"}}/>
+                        <Img src={item.img} loader={<Loader />} className="card-img-top" type="image/webp" loading="lazy" decoding="async" style={{ maxWidth: "1080px", maxHeight: "1920px",  width:"100%"}}/>
                         {/* <img className="img-fluid rounded" src={member.imgSrc} alt="" /> */}
                         <div className="team-text bg-white rounded-end p-4">
                           <div>

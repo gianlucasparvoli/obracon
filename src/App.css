@@ -24,15 +24,12 @@ body {
   overflow-x: hidden;
   background: #E3E1E2;
   /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #E3E1E2, #FFE9B4);
+  background: -webkit-linear-gradient(to right, #E3E1E2, #E3E1E3);
   /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #E3E1E2, #FFE9B4);
+  background: linear-gradient(to right, #E3E1E2, #E3E1E3);
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
-body {
-  background-color: #6CB4EE;
-}
 
 nav {
   display: flex;
@@ -115,7 +112,7 @@ nav {
 
 .primary-text {
   font-size: clamp(1rem, 3vw, 1.5rem);
-  max-width: 500px;
+  /* max-width: 500px; */
   color: #6a6a6a;
   margin: 1.5rem 0rem;
 }
@@ -173,7 +170,7 @@ nav {
 
 .primary-subheading {
   font-weight: 700;
-  color: #fe9e0d;
+  color: #FCC913;
   font-size: 1.15rem;
 }
 
