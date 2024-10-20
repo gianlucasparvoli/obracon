@@ -220,7 +220,7 @@ nav {
   display: flex;
   align-items: center;
   padding: 1rem;
-  border-radius: 5rem;
+  /* border-radius: 5rem; */
 }
 
 .contact-form-container input {
@@ -302,7 +302,7 @@ nav {
   align-items: center;
   justify-content: center;
   max-width: 750px;
-  border-radius: 2rem;
+  /* border-radius: 2rem; */
   flex-direction: column;
   text-align: center;
 }
@@ -359,7 +359,7 @@ nav {
   justify-content: center;
   align-items: center;
   text-align: center;
-  border-radius: 1rem;
+  /* border-radius: 1rem; */
   color: #505050;
   margin: 1rem 2rem;
 }
@@ -500,7 +500,7 @@ nav {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border-radius: 1rem !important;
+    /* border-radius: 1rem !important; */
   }
 
   .contact-form-container-textarea {
@@ -509,7 +509,7 @@ nav {
     padding: 12px 20px;
     box-sizing: border-box;
     border: 2px solid #ccc;
-    border-radius: 4px;
+    /* border-radius: 4px; */
     background-color: #f8f8f8;
     font-size: 16px;
     resize: none;
@@ -564,7 +564,7 @@ nav {
   left: 0;
   right: 60px;
   bottom: 30px;
-  display: flex;
+  background-color: #B7B7B6;
   align-items: center;
   justify-content: space-between;
   opacity: 0;

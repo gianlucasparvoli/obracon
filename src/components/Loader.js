@@ -5,7 +5,7 @@ const Loader = () => {
 
   return (
     <div style={{width: "100%", display: "flex", justifyContent: "center"}}>
-      <Circles color="orange"></Circles>
+      <Circles color="grey"></Circles>
     </div>
   );
 };

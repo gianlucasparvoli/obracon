@@ -14,8 +14,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import InfoIcon from "@mui/icons-material/Info";
 import HomeWorkIcon from '@mui/icons-material/HomeWork';
 import PhoneRoundedIcon from "@mui/icons-material/PhoneRounded";
-import GroupIcon from '@mui/icons-material/Group';
-import { useNavigate } from "react-router-dom"; 
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const [openMenu, setOpenMenu] = useState(false);
@@ -47,15 +46,15 @@ const Navbar = () => {
       path: "/contact"
     },
   ];
-  
+
   return (
     <nav>
       <div className="nav-logo-container">
-        <img src={Logo} alt="" onClick={() => navigate("/")}/>
+        <img src={Logo} alt="" onClick={() => navigate("/")} />
       </div>
       <div className="navbar-links-container mt-3">
         {menuOptions.map((item) => (
-          <a onClick={() => navigate(item.path)}>
+          <a style={{ "font-size": "22px", color: "#534D50" }} onClick={() => navigate(item.path)} >
             {item.text}
           </a>
         ))}

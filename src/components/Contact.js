@@ -55,7 +55,7 @@ const Contact = () => {
       {/* <div class="divider py-1 rounded bg-dark mb-1"></div> */}
       {/* {!isMobile && <div style={{ "marginTop": path == "/" && "15rem" }}> </div>} */}
       <div style={{"padding-top": "1px"}}>
-        <form style={{ border: "2px solid #909191","backgroundColor": "#b7b7b6", "padding": "2rem", "borderRadius": "1rem", "margin-top": path !== "/" ? "5rem": "1rem" }} onSubmit={handleSubmit(sendEmail)}>
+        <form style={{ border: "2px solid #909191","backgroundColor": "#b7b7b6", "padding": "2rem", "margin-top": path !== "/" ? "5rem": "1rem" }} onSubmit={handleSubmit(sendEmail)}>
           <h3 className="text-center">¿Querés contactarte con nosotros? Completá el siguiente formulario:</h3>
 
           <div className="mt-4 form-group row d-flex justify-content-center">

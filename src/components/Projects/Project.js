@@ -7,10 +7,12 @@ import { Img } from 'react-image';
 import { storage, auth } from '../../firebase'; // Import the storage instance
 import { ref, listAll, getDownloadURL } from "firebase/storage";
 import { signInAnonymously } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 function Projects() {
   var path = window.location.pathname;
-  const [showItem, setShowItem] = useState("Instituciones");
+  const navigate = useNavigate()
+  const [showItem, setShowItem] = useState("Industria");
   const [IndustriaImg, setIndustriaImg] = useState("");
   const [ViviendaImg, setViviendaImg] = useState("");
   const [BancoImg, setBancoImg] = useState("");
@@ -58,11 +60,6 @@ function Projects() {
   var workInfoData = {
     "projects": [
       {
-        "img": InstitucionImg,
-        "title": "Instituciones",
-        "text": "",
-        "id": "0"
-      }, {
         "img": IndustriaImg,
         "title": "Industria",
         "text": "",
@@ -72,6 +69,11 @@ function Projects() {
         "title": "Viviendas",
         "text": "",
         "id": "2"
+      }, {
+        "img": InstitucionImg,
+        "title": "Instituciones",
+        "text": "",
+        "id": "0"
       }, {
         "img": BancoImg,
         "title": "Banco de la Nación Argentina",
@@ -119,12 +121,12 @@ function Projects() {
           <div className="row">
             <div className="col-12 mt-2">
               <div className="text-center">
-                <div class="card text-center" style={{ border: "2px solid #909191", background: "#b7b7b6", "borderRadius": "1rem" }}>
+                <div class="card rounded-0 text-center" style={{ border: "2px solid #909191", background: "#b7b7b6" }}>
                   <div class="navbar navbar-expand-lg card-header " >
                     <ul class="navbar-nav">
                       {workInfoData?.projects?.map((item, index) => (
                         <li class="nav-item active pt-2">
-                          <h5><a className="nav-link" aria-current="page"
+                          <h5><a className="nav-link fw-bold" aria-current="page"
                             href={"#" + item.title}
                             onClick={() => setShowItem(item.title)}>
                             {item.title}
@@ -140,24 +142,22 @@ function Projects() {
                       // <div className="card" >
 
                       <div className="team-item position-relative">
-                        <Img src={item.img} loader={<Loader />} className="card-img-top" type="image/webp" loading="lazy" decoding="async" style={{ maxWidth: "1080px", maxHeight: "1920px",  width:"100%"}}/>
-                        {/* <img className="img-fluid rounded" src={member.imgSrc} alt="" /> */}
-                        <div className="team-text bg-white rounded-end p-4">
+                        <Img
+                          src={item.img}
+                          loader={<Loader />}
+                          className="card-img-top"
+                          type="image/webp"
+                          loading="lazy"
+                          decoding="async"
+                          style={{ maxWidth: "90%" }}
+                        />
+                        <div className="team-text text-center rounded-end p-4">
                           <div>
-                            {/* <h5>{item.title}</h5> */}
-                            <a className="text-dark" href={"/project/" + item.title}>Ir a {item.title}</a>
+                            <h5 className="text-dark fw-bold" onClick={() => navigate("/project/" + item.title)} >Ir a {item.title}</h5>
                           </div>
                         </div>
-                        {/* </div> */}
-                        {/* <div className="card-body">
-                          <p className="card-text">{item.text}</p>
-                          <h5 ><a className="btn btn-dark" href={"/project/" + item.title}>Ir a {item.title}</a></h5>
-                        </div> */}
                       </div>
                     ))}
-                    {/* <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a> */}
                   </div>
                 </div>
               </div>
