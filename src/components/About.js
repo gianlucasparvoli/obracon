@@ -54,12 +54,12 @@ const About = () => {
           {/* <img src={AboutBackgroundImage} alt="" /> */}
         </div>
         <div className="about-section-text-container">
-          <p className="primary-subheading">Sobre Nosotros</p>
+          <p className="primary-subheading text-center">Sobre Nosotros</p>
           <h1 className="primary-heading">
             Obracon. <h2>Proyectos civiles de alta complejidad</h2>
           </h1>
-          <p className="primary-text">
-            Obracon es una empresa argentina especializada en brindar servicios dentro del sector de la construcción. Con más de 20 años de trayectoria, hemos llevado a cabo una amplia variedad de proyectos, tanto industriales como residenciales, colaborando con destacadas entidades como Ternium Siderar, AES y el Banco Nación de la República Argentina, entre otras. <br /> Nuestro equipo de profesionales abarca todas las etapas de un proyecto, desde la concepción inicial hasta la ejecución final, utilizando tecnología de punta y adoptando metodologías BIM para garantizar la eficiencia y precisión en cada obra.
+          <p className="primary-text" style={{"textAlign":"justify"}}>
+            Obracon es una empresa argentina especializada en brindar servicios dentro del sector de la construcción. Con más de 20 años de trayectoria, hemos llevado a cabo una amplia variedad de proyectos, tanto industriales como residenciales, colaborando con destacadas entidades como Ternium Siderar, AES y el Banco Nación de la República Argentina, entre otras. <br /> <br />Nuestro equipo de profesionales abarca todas las etapas de un proyecto, desde la concepción inicial hasta la ejecución final, utilizando tecnología de punta y adoptando metodologías BIM para garantizar la eficiencia y precisión en cada obra.
           </p>
         </div>
       </div>

@@ -35,15 +35,15 @@ const Home = () => {
   }, []);
 
   var imgPath = files;
-  var txtHome = [{
-    "title": "Trayectoria",
-    "text": "Mas de X años de experiencia en todo tipo de obras"
-  }, {
-    "title": "Testimonios",
-    "text": "Comentarios positivos sobre todos nuestros cliente a lo largo de los años"
-  }, {
+  var txtHome = [ {
     "title": "Soluciones Rapidas",
     "text": "Nuestro equipo de profesionales adopta metodologías BIM para un mayor desempeño"
+  },{
+    "title": "Testimonios",
+    "text": "Comentarios positivos sobre todos nuestros cliente a lo largo de los años"
+  },{
+    "title": "Trayectoria",
+    "text": " Mas de 30 años de experiencia"
   }];
 
   return (
