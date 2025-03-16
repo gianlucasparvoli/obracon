@@ -114,11 +114,13 @@ function ProjectFolder() {
     "img": BNASunchales,
     "title": "Sunchales",
     "text": "Lorem ipsum dolor sit amet consectetur. Maecenas orci et sagittis duis elementum interdum facilisi bibendum.",
-  }, {
-    "img": BNAConcepcion_del_uruguay,
-    "title": "Concepción del Uruguay",
-    "text": "Lorem ipsum dolor sit amet consectetur. Maecenas orci et sagittis duis elementum interdum facilisi bibendum.",
-  }]
+  }
+  // , {
+  //   "img": BNAConcepcion_del_uruguay,
+  //   "title": "Concepción del Uruguay",
+  //   "text": "Lorem ipsum dolor sit amet consectetur. Maecenas orci et sagittis duis elementum interdum facilisi bibendum.",
+  // }
+]
 
   var projectsIndustria = [
     {

@@ -29,7 +29,7 @@ function ProjectDetail() {
     if (idFolder === "Banco de la Nación Argentina" && id === "Esperanza") pathsImgStorage = "BNA/Esperanza"
     else if (idFolder === "Banco de la Nación Argentina" && id === "Pergamino") pathsImgStorage = "BNA/Pergamino"
     else if (idFolder === "Banco de la Nación Argentina" && id === "Sunchales") pathsImgStorage = "BNA/Sunchales"
-    else if (idFolder === "Banco de la Nación Argentina" && id === "Concepción del Uruguay") pathsImgStorage = "BNA/Concepcion_del_uruguay"
+    // else if (idFolder === "Banco de la Nación Argentina" && id === "Concepción del Uruguay") pathsImgStorage = "BNA/Concepcion_del_uruguay"
     else if (idFolder === "Viviendas" && id === "Dominguez") pathsImgStorage = "Viviendas/Dominguez"
     else if (idFolder === "Viviendas" && id === "Policelia") pathsImgStorage = "Viviendas/Policelia"
     else if (idFolder === "Viviendas" && id === "Zaccanti") pathsImgStorage = "Viviendas/Zaccanti"

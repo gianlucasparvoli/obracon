@@ -54,7 +54,7 @@ const About = () => {
           {/* <img src={AboutBackgroundImage} alt="" /> */}
         </div>
         <div className="about-section-text-container">
-          <p className="primary-subheading text-center">Sobre Nosotros</p>
+          {/* <p className="primary-subheading text-center">Sobre Nosotros</p> */}
           <h1 className="primary-heading">
             Obracon. <h2>Proyectos civiles de alta complejidad</h2>
           </h1>
