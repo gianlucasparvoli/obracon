@@ -1,0 +1,21 @@
+name: Deploy to Ferozo
+
+on:
+  push:
+    branches:
+      - main  # O la rama que estés usando
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Deploy to Ferozo
+        run: |
+          # Aquí usas una herramienta como `scp` o `rsync` para copiar los archivos a tu servidor Ferozo.
+          # Asegúrate de tener configurado tu SSH para acceder a tu servidor Ferozo de manera segura.
+
+          scp -r ./dist/* cz000230@obracom.com:https://mipanel.ferozo.com/deploy/git/766de6d068677914f22575c4bef3a9e8
